@@ -9,7 +9,7 @@ from openai import AssistantEventHandler
 
 # Load the API key from .env and authenticate with OpenAI
 load_dotenv(find_dotenv(), override=True)
-openai.api_key = os.environ.get('OPENAI_API_KEY')
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 # Create OpenAI client
 client = OpenAI()
@@ -19,9 +19,9 @@ def create_and_upload_vector_store(store_name, file_paths):
     vector_store = client.beta.vector_stores.create(name=store_name)
     file_streams = [open(path, "rb") for path in file_paths]
     
-    file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
-        vector_store_id=vector_store.id, files=file_streams
-    )
+    # file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
+    #     vector_store_id=vector_store.id, files=file_streams
+    # )
     
     for stream in file_streams:
         stream.close()
@@ -29,10 +29,10 @@ def create_and_upload_vector_store(store_name, file_paths):
     return vector_store.id
 
 # IDs for the knowledge base files
-company_policies_vector_store_id = create_and_upload_vector_store("Company Policies", ["base/company_policies.txt"])
-employee_benefits_vector_store_id = create_and_upload_vector_store("Employee Benefits", ["base/employee_benefits.txt"])
-leave_request_vector_store_id = create_and_upload_vector_store("Leave Requests", ["base/leave_request.txt"])
-payroll_vector_store_id = create_and_upload_vector_store("Payroll", ["base/payroll.txt"])
+company_policies_vector_store_id = create_and_upload_vector_store("Company Policies", ["C:\\Users\\Dev1\\Documents\\greet_chatbot\\company_policies.txt"])
+employee_benefits_vector_store_id = create_and_upload_vector_store("Employee Benefits", ["C:\\Users\\Dev1\\Documents\\greet_chatbot\\employee_benefit.txt"])
+leave_request_vector_store_id = create_and_upload_vector_store("Leave Requests", ["C:\\Users\\Dev1\\Documents\\greet_chatbot\\leave_request.txt"])
+payroll_vector_store_id = create_and_upload_vector_store("Payroll", ["C:\\Users\\Dev1\\Documents\\greet_chatbot\\payroll.txt"])
 
 # Create and Update Assistants with Vector Stores and Detailed Instructions
 assistants = {
@@ -286,4 +286,4 @@ else:
         st.session_state.clear()
         st.write("Logging out...")
         st.stop()
-    st.write("Developed By DeDataDude")
+    st.write("Developed By Kinza Nisar")
