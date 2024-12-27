@@ -1,4 +1,4 @@
-# HR Chatbot
+# AI Chatbot
 
 Welcome to the HR Chatbot repository! This project is designed to streamline HR inquiries for employees by leveraging the power of OpenAI's API and Streamlit for a user-friendly web application.
 
